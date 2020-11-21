@@ -1,0 +1,275 @@
+<html>
+
+<body>
+	<h2>Arrays de Objetos</h2>
+
+	<button onclick="notasAlumno()">Notas de un alumno</button><br>
+	<p>
+
+		<button onclick="subeUnPunto()">Subir un punto en cada asignatura</button><br>
+	<p>
+
+		<button onclick="alumnosCiudad()">Buscar alumnos de una ciudad</button>
+		<button onclick="alumnosCurso()">Buscar alumnos de un curso</button><br>
+	<p>
+
+		<button onclick="ordenaEdad()">Ordenar alumnos por edad</button>
+		<button onclick="ordenaNombreAsc()">Ordenar alumnos por nombre ascendente</button>
+		<button onclick="ordenaNombreDesc()">Ordenar alumnos por nombre descendente</button><br>
+	<p>
+
+		<button onclick="borraAlumno()">Borrar alumno</button><br>
+	<p>
+
+		<button onclick="nuevoAlumno()">Nuevo alumno</button>
+		<button onclick="nuevaAsignatura()">Nueva asignatura</button>
+
+</body>
+
+<script>
+	"use strict"
+	let alumnos = [{
+		'codigo': 'DAW-1-2020',
+		'nombre': 'Pepe',
+		'ciudad': 'Valencia',
+		'calificaciones': [{ 'asignatura': 'PRG', 'nota': 9 },
+		{ 'asignatura': 'GBD', 'nota': 6 },
+		{ 'asignatura': 'ING', 'nota': 4 },
+		{ 'asignatura': 'FOL', 'nota': 3 }
+		],
+		'edad': 24
+	},
+	{
+		'codigo': 'DAW-2-2020',
+		'nombre': 'Juan',
+		'ciudad': 'Castellon',
+		'calificaciones': [{ 'asignatura': 'DWC', 'nota': 4 },
+		{ 'asignatura': 'DWS', 'nota': 6 },
+		{ 'asignatura': 'DAW', 'nota': 7 },
+		{ 'asignatura': 'DIW', 'nota': 8 },
+		{ 'asignatura': 'ING', 'nota': 9 },
+		{ 'asignatura': 'EIE', 'nota': 2 }
+		],
+		'edad': 28
+	},
+	{
+		'codigo': 'DAW-1-2019',
+		'nombre': 'Ana',
+		'ciudad': 'Valencia',
+		'calificaciones': [{ 'asignatura': 'PRG', 'nota': 6 },
+		{ 'asignatura': 'GBD', 'nota': 2 },
+		{ 'asignatura': 'ING', 'nota': 6 },
+		{ 'asignatura': 'FOL', 'nota': 2 }
+		],
+		'edad': 22
+	},
+	{
+		'codigo': 'DAW-2-2020',
+		'nombre': 'Maria',
+		'ciudad': 'Castellon',
+		'calificaciones': [{ 'asignatura': 'DWC', 'nota': 4 },
+		{ 'asignatura': 'DWS', 'nota': 6 },
+		{ 'asignatura': 'DAW', 'nota': 7 },
+		{ 'asignatura': 'DIW', 'nota': 8 },
+		{ 'asignatura': 'ING', 'nota': 4 },
+		{ 'asignatura': 'EIE', 'nota': 1 }
+		],
+		'edad': 30
+	}
+	]
+
+	function notasAlumno() {
+
+		let nombre = prompt('Di un nombre');
+		let alumno = alumnos.find(item => item.nombre == nombre);
+
+		if (alumno !== undefined) {
+			let media = 0;
+			let masAlta = 0;
+			let nombreAlta;
+			let masBajo = 10;
+			let nombreBajo;
+			alumno.calificaciones.forEach(elemento => {
+				media += elemento["nota"];
+
+
+				if (elemento["nota"] > masAlta) {
+					masAlta = elemento["nota"];
+					nombreAlta = elemento["asignatura"];
+				} else if (elemento["nota"] == masAlta) {
+					nombreAlta += " y " + elemento["asignatura"];
+				}
+
+				if (elemento["nota"] < masBajo) {
+					masBajo = elemento["nota"];
+					nombreBajo = elemento["asignatura"];
+				} else if (elemento["nota"] == masBajo) {
+					nombreBajo += " y " + elemento["asignatura"];
+				}
+			})
+
+
+			console.log("La media es: " + (media / alumno.calificaciones.length));
+			console.log("La nota mas alta es: " + masAlta + " en la asignatura " + nombreAlta);
+			console.log("La nota mas baja es: " + masBajo + " en la asignatura " + nombreBajo);
+		} else {
+			console.log("El alumno " + nombre + " no existe");
+		}
+
+	}
+
+	function subeUnPunto() {
+
+		alumnos.forEach(elemento => elemento.calificaciones.forEach(subElemento => {
+			subElemento.nota++;
+		}));
+
+		console.log(alumnos);
+	}
+
+	function alumnosCiudad() {
+		let ciudad = prompt('Introduzca una ciudad');
+		let nombres = "";
+		alumnos.find(item => {
+			if (item.ciudad == ciudad) {
+				nombres += item.nombre + " ";
+			}
+		})
+		if (nombres == "") {
+			nombres = "No hay ningun alumno de esa ciudad";
+		}
+		console.log(nombres);
+	}
+
+	function alumnosCurso() {
+		let curso = prompt('Dime el curso');
+		let nombre = "";
+
+		alumnos.find(item => {
+			let numCurso = item.codigo.split("-");
+			if (numCurso[1] == curso) {
+				nombre += item.nombre + " ";
+			}
+		})
+
+		if (nombre == "") {
+			nombre = "No existe ningun alumno en ese curso";
+		}
+
+		console.log(nombre);
+	}
+
+	function ordenaEdad() {
+
+		alumnos.sort(function (a, b) {
+			return (a.edad - b.edad);
+		})
+
+		console.log(alumnos);
+	}
+
+	function ordenaNombreAsc() {
+
+		alumnos.sort(function (a, b) {
+			if (a.nombre > b.nombre) {
+				return 1;
+			}
+			if (a.nombre < b.nombre) {
+				return -1;
+			}
+			return 0;
+		})
+		console.log(alumnos);
+	}
+
+	function ordenaNombreDesc() {
+
+		alumnos.sort(function (a, b) {
+			if (a.nombre < b.nombre) {
+				return 1;
+			}
+			if (a.nombre > b.nombre) {
+				return -1;
+			}
+			return 0;
+		})
+		console.log(alumnos);
+	}
+
+	function borraAlumno() {
+		let nombre = prompt("Dime el nombre del alumno");
+		let alumno;
+		let posicion;
+		alumnos.find(elemento => {
+			if (elemento.nombre == nombre) {
+				alumno = elemento;
+				posicion = alumnos.indexOf(elemento);
+			}
+		});
+
+		if (alumno !== undefined) {
+			alumnos.splice(posicion, 1);
+		} else {
+			console.log("No existe ese alumno");
+		}
+
+		console.log(alumnos);
+	}
+
+	function nuevoAlumno() {
+		let codigo = prompt("Introduzca el codigo");
+		let nombre = prompt("Introduzca el nombre");
+		let ciudad = prompt("Introduzca el ciudad");
+		let edad = prompt("Introduzca el edad");
+
+		let alumno = {
+			"codigo": codigo,
+			"nombre": nombre,
+			"ciudad": ciudad,
+			"calificaciones": [],
+			"edad": edad
+		}
+
+		alumnos.push(alumno);
+
+		console.log(alumnos);
+	}
+
+	function nuevaAsignatura() {
+		let nombre = prompt("introduzca un nombre");
+
+		let alumno = alumnos.find(elemento => elemento.nombre == nombre);
+
+		console.log(alumnos[alumno]);
+
+		if (alumno !== undefined) {
+			let asignatura = prompt("Introduzca el nombre de la asignatura");
+			let nota = prompt("Introduzca la nota");
+			let nuevaAsign = true;
+			alumnos.find(elemento => elemento.calificaciones.find(subElemento => {
+
+				if (subElemento.asignatura == asignatura) {
+					subElemento.nota = nota;
+					nuevaAsign = false;
+				}
+
+			}))
+
+			if (nuevaAsign == true) {
+				let calificacion = {
+					"asignatura": asignatura,
+					"nota": nota
+				}
+				alumno.calificaciones.push(calificacion);
+			}
+
+		} else {
+			console.log("Ese alumno no existe");
+		}
+
+		console.log(alumnos);
+
+	}
+</script>
+
+</html>
