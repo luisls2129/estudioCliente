@@ -85,7 +85,7 @@
         let alumnEncontrado = alumnos.find(alumn => alumn.nombre == alumno);
 
         let sumaNotas = 0, numNotas = 0, notaMax = 0, notaMin = 10, nomNotaMax, nomNotaMin;
-        alumnEncontrado.calificaciones.forEach(calificacion =>{
+        alumnEncontrado.calificaciones.forEach(calificacion => {
 
             sumaNotas += calificacion.nota;
             numNotas++;
@@ -109,9 +109,9 @@
     }
 
     function subeUnPunto() {
-        alumnos.forEach(alumno =>{
+        alumnos.forEach(alumno => {
 
-            alumno.calificaciones.forEach(calificacion =>{
+            alumno.calificaciones.forEach(calificacion => {
 
                 calificacion.nota += 1;
 
@@ -126,7 +126,7 @@
 
         let ciudad = prompt("Introduzca la ciudad");
         let nombres = "";
-        alumnos.find(alumno =>{
+        alumnos.find(alumno => {
             if (alumno.ciudad == ciudad) {
                 nombres += alumno.nombre + " ";
             }
@@ -140,7 +140,7 @@
 
         let curso = prompt("Introduzca el curso");
         let nombres = "";
-        alumnos.find(alumno =>{
+        alumnos.find(alumno => {
             let curso = alumno.codigo.split("-")[1];
             if (curso == curso) {
                 nombres += alumno.nombre + " ";
@@ -153,14 +153,14 @@
 
     function ordenaEdad() {
 
-        alumnos.sort(function(a, b) { return a.edad - b.edad; });
+        alumnos.sort(function (a, b) { return a.edad - b.edad; });
 
         console.log(alumnos);
     }
 
     function ordenaNombreAsc() {
 
-        alumnos.sort((a,b) => a.nombre > b.nombre ? 1 : -1);
+        alumnos.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
 
         console.log(alumnos);
 
@@ -168,21 +168,64 @@
 
     function ordenaNombreDesc() {
 
-        alumnos.sort((a,b) => a.nombre > b.nombre ? -1 : 1);
+        alumnos.sort((a, b) => a.nombre > b.nombre ? -1 : 1);
 
         console.log(alumnos);
     }
 
     function borraAlumno() {
 
-        
+        let nombre = prompt("Introduzca el nombre del alumno a eliminar");
 
+        let posicion = alumnos.findIndex(alumno => alumno.nombre == nombre);
+
+        alumnos.splice(posicion, 1);
+
+        console.log(alumnos);
     }
 
     function nuevoAlumno() {
+
+        let codigo = prompt("Introduzca el codigo");
+        let nombre = prompt("Introduzca el nombre");
+        let ciudad = prompt("Introduzca el ciudad");
+        let edad = prompt("Introduzca el edad");
+
+        let alumno = {
+            'codigo': codigo,
+            'nombre': nombre,
+            'ciudad': ciudad,
+            'calificaciones': [
+            ],
+            'edad': parseInt(edad)
+        }
+
+        alumnos.push(alumno);
+
+        console.log(alumnos);
+
     }
 
     function nuevaAsignatura() {
+
+        let nombre = prompt("Introduzca el nombre del alumno");
+
+        let alumno = alumnos.find(alumn => alumn.nombre == nombre);
+
+        let asignatura = prompt("Introduzca el nombre de la asignatura");
+		let nota = prompt("Introduzca la nota");
+
+        let nuevaAsignatura = {
+            'asignatura': asignatura,
+             'nota': parseInt(nota)
+        }
+
+        if(alumno.calificaciones.find(cal => cal.asignatura == nuevaAsignatura.asignatura) === undefined){
+            alumno.calificaciones.push(nuevaAsignatura);
+        }
+
+        console.log(alumnos);
+        
     }
 </script>
 
