@@ -1,0 +1,45 @@
+body{
+    width: 80%;
+    margin: auto;
+}
+#catalogo{
+    margin: auto;
+    border: 2px solid black;
+    display: flex;
+}
+
+.articulo{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 2px solid black;
+}
+
+.articulo>img{
+    margin: auto;
+    width: 60%;
+}
+
+.articulo>p{
+    margin: auto;
+}
+
+#carrito{
+    display: flex;
+    
+}
+
+.elementoCarrito{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid red;
+}
+
+.elementoCarrito>img{
+    margin: auto;
+    width: 60%;
+}
+
+.elementoCarrito>p{
+    margin: auto;
+}

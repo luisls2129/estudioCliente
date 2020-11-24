@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="catalogo">
+        <div id="art1" class="articulo" onclick="anyade(this)">
+            <img src="img/asusROG.jpg" alt="">
+            <p>Precio: 500 €</p>
+        </div>
+        <div id="art2" class="articulo" onclick="anyade(this)">
+            <img src="img/asusTUF.jpg" alt="">
+            <p>Precio: 300 €</p>
+        </div>
+        <div id="art3" class="articulo" onclick="anyade(this)">
+            <img src="img/msi011.jpg" alt="">
+            <p>Precio: 800 €</p>
+        </div>
+        <div id="art4" class="articulo" onclick="anyade(this)">
+            <img src="img/xiaomiG.jpg" alt="">
+            <p>Precio: 350 €</p>
+        </div>
+        
+    </div>
+    <button onclick="vaciar()">Vaciar carrito</button>
+    <p id="precioTotalCarrito">Precio Total: 0 €</p>
+    <div id="carrito">
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

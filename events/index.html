@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <select id="lista" name="opciones">
+    </select>
+    
+    <button id="boton">Añadir elemento</button>
+
+    <script>
+        var milista = document.getElementById("lista");
+        var miboton = document.getElementById("boton");
+
+        miboton.addEventListener("click", addLista);
+        function addLista() {
+            let texto = prompt("Dime Text");
+            let valor = prompt("Dime Value");
+            mioption = document.createElement("option");
+            mioption.value = valor;
+            mioption.text = texto;
+
+            milista.appendChild(mioption);
+        }
+    </script>
+
+</body>
+
+</html>
