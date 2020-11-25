@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="formulario" id="formulario">
+        <input type="text" id="texto">
+        <textarea name="textArea" id="textArea" cols="30" rows="1"></textarea>
+        <label for="casado">Estas Casado?</label>
+        <input type="radio" value="si" name="casado" id="pregunta_si"/> SI
+        <input type="radio" value="no" name="casado" id="pregunta_no"/> NO
+        <input type="radio" value="nsnc" name="casado" id="pregunta_nsnc"/> NS/NC
+        <label>Tiene algo de esto?</label>
+        <input type="checkbox" value="casa" name="casa" id="casa"> Tengo casa a mi nombre
+        <input type="checkbox" value="mascota" name="mascota" id="mascota"> Tengo mascota a mi nombre
+        <input type="checkbox" value="trabajo" name="trabajo" id="trabajo"> Tengo trabajo
+        <label>Sexo</label>
+        <select name="sexo" id="sexo">
+            <option value="hombre">Hombre</option>
+            <option value="mujer">Mujer</option>
+            <option value="noContesta">Prefiero no contestar</option>
+            <option value="mucho">Mucho</option>
+        </select>
+        <input type="submit" name="enviar" value="Enviar">
+        <input type="reset" name="borrar" value="Borrar">
+    </form>
+
+
+
+    <script src="main.js"></script>
+</body>
+</html>
